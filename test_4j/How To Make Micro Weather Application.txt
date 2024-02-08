@@ -1,0 +1,67 @@
+How To Generate The Weather Application?
+
+-- How to Find User Location?
+for find user location you need to use `window.navigator.geolocation` object. this object, has a method with `getCurrentPosition(successCallback)` name & syntax. the "successCallback" is like to this:
+`(location) => console.log(location)` or like to this:
+`function (location) { console.log(location) }` ["location" parameter is an "GeolocationPosition" class]¹
+
+you are should give [latitude, longitude] parameters to a Weather API Service as Accuweather or OpenWeather.
+so, you need to receive theme from `location.coords` in "successCallback" of "getCurrentPosition(successCallback)" function. ok?
+
+
+-- How to send a request to Weather API and get the response as weather status?
+we use the OpenWeather API. you need to have an API Key. but we serve a key for using in your exersices. this key expires in 1403/1/1. you can get weather by this API key: "15479cfedcfd0c4f285f94d938894ff5"
+and you need to use this api link for get the weather: 
+"https://api.openweathermap.org/data/2.5/weather?appid=15479cfedcfd0c4f285f94d938894ff5&lat={latitude}&lon={longitude}&lang=fa"
+
+you get the JSON response like this:
+`{
+    "coord": {
+        "lon": 59.6158,
+        "lat": 36.2881
+    },
+    "weather": [
+        {
+            "id": 802,
+            "main": "Clouds",
+            "description": "ابرهای پراکنده",
+            "icon": "03d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 281.25,
+        "feels_like": 280.08,
+        "temp_min": 281.25,
+        "temp_max": 281.25,
+        "pressure": 1019,
+        "humidity": 66
+    },
+    "visibility": 6000,
+    "wind": {
+        "speed": 2.06,
+        "deg": 360
+    },
+    "clouds": {
+        "all": 40
+    },
+    "dt": 1705312606,
+    "sys": {
+        "type": 1,
+        "id": 7485,
+        "country": "IR",
+        "sunrise": 1705288333,
+        "sunset": 1705324119
+    },
+    "timezone": 12600,
+    "id": 124665,
+    "name": "مشهد",
+    "cod": 200
+}`
+for get the weather, get temp & convert it from Kelvin to Celsius and display it.
+
+
+
+---------------------------------------------------------------------------------
+1. an instance of GeolocationPosition: {coords: <GeolocationCoordinates>, timestamp: <nmuber>}
+coords => {latitude: <double>, longitude: <double>}
